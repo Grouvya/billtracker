@@ -1,6 +1,6 @@
-# Bill & Savings Tracker  बिल और बचत ट्रैकर
+# Bill & Savings Tracker
 
-![App Icon](https://i.imgur.com/8z8K9YQ.png)
+![App Icon]([https://i.imgur.com/8z8K9YQ.png](https://toppng.com/uploads/preview/free-icons-dollar-bills-transparent-background-11553537979k4k0dooqsl.png)
 
 A modern, multi-language, and multi-currency desktop application built with Python and Tkinter to help you manage your bills, track your budget, and stay on top of your finances. It features a sleek, dark-themed UI with live currency conversion rates.
 
