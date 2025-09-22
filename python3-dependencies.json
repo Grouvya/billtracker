@@ -1,0 +1,62 @@
+Collecting requests (from -r /tmp/requirements.u7i7ue7z (line 1))
+  Using cached requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+Collecting tkcalendar (from -r /tmp/requirements.u7i7ue7z (line 2))
+  Using cached tkcalendar-1.6.1-py3-none-any.whl.metadata (22 kB)
+Collecting charset_normalizer<4,>=2 (from requests->-r /tmp/requirements.u7i7ue7z (line 1))
+  Using cached charset_normalizer-3.4.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (36 kB)
+Collecting idna<4,>=2.5 (from requests->-r /tmp/requirements.u7i7ue7z (line 1))
+  Using cached idna-3.10-py3-none-any.whl.metadata (10 kB)
+Collecting urllib3<3,>=1.21.1 (from requests->-r /tmp/requirements.u7i7ue7z (line 1))
+  Using cached urllib3-2.5.0-py3-none-any.whl.metadata (6.5 kB)
+Collecting certifi>=2017.4.17 (from requests->-r /tmp/requirements.u7i7ue7z (line 1))
+  Using cached certifi-2025.8.3-py3-none-any.whl.metadata (2.4 kB)
+Collecting babel (from tkcalendar->-r /tmp/requirements.u7i7ue7z (line 2))
+  Using cached babel-2.17.0-py3-none-any.whl.metadata (2.0 kB)
+Using cached requests-2.32.5-py3-none-any.whl (64 kB)
+Using cached charset_normalizer-3.4.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (151 kB)
+Using cached idna-3.10-py3-none-any.whl (70 kB)
+Using cached urllib3-2.5.0-py3-none-any.whl (129 kB)
+Using cached tkcalendar-1.6.1-py3-none-any.whl (40 kB)
+Using cached certifi-2025.8.3-py3-none-any.whl (161 kB)
+Using cached babel-2.17.0-py3-none-any.whl (10.2 MB)
+Saved /tmp/pip-generator-python3-requirementsb76khmz6/requests-2.32.5-py3-none-any.whl
+Saved /tmp/pip-generator-python3-requirementsb76khmz6/charset_normalizer-3.4.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Saved /tmp/pip-generator-python3-requirementsb76khmz6/idna-3.10-py3-none-any.whl
+Saved /tmp/pip-generator-python3-requirementsb76khmz6/urllib3-2.5.0-py3-none-any.whl
+Saved /tmp/pip-generator-python3-requirementsb76khmz6/tkcalendar-1.6.1-py3-none-any.whl
+Saved /tmp/pip-generator-python3-requirementsb76khmz6/certifi-2025.8.3-py3-none-any.whl
+Saved /tmp/pip-generator-python3-requirementsb76khmz6/babel-2.17.0-py3-none-any.whl
+Successfully downloaded requests charset_normalizer idna urllib3 tkcalendar certifi babel
+========================================================================
+Downloading sources
+========================================================================
+Running: "pip3 download --exists-action=i --dest /tmp/pip-generator-python3-requirementsb76khmz6 -r /tmp/requirements.u7i7ue7z"
+========================================================================
+Downloading arch independent packages
+========================================================================
+Downloading https://files.pythonhosted.org/packages/83/2d/5fd176ceb9b2fc619e63405525573493ca23441330fcdaee6bef9460e924/charset_normalizer-3.4.3.tar.gz
+Deleting charset_normalizer-3.4.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+========================================================================
+Obtaining hashes and urls
+========================================================================
+Generating hash for charset_normalizer-3.4.3.tar.gz
+Extracting download url for charset_normalizer
+Generating hash for babel-2.17.0-py3-none-any.whl
+Extracting download url for babel
+Generating hash for certifi-2025.8.3-py3-none-any.whl
+Extracting download url for certifi
+Generating hash for tkcalendar-1.6.1-py3-none-any.whl
+Extracting download url for tkcalendar
+Generating hash for urllib3-2.5.0-py3-none-any.whl
+Extracting download url for urllib3
+Generating hash for idna-3.10-py3-none-any.whl
+Extracting download url for idna
+Generating hash for requests-2.32.5-py3-none-any.whl
+Extracting download url for requests
+========================================================================
+Generating dependencies
+========================================================================
+Generating dependencies for requests
+Generating dependencies for tkcalendar
+
+Output saved to python3-requirements.json
