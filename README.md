@@ -1,128 +1,124 @@
-# billtracker
+# Bill & Savings Tracker  बिल और बचत ट्रैकर
 
-A modern, multi-currency, and multi-language desktop application built with Python and Tkinter to help you manage your bills, track your budget, and stay on top of your finances.
+![App Icon](https://i.imgur.com/8z8K9YQ.png)
 
-The main interface of the Bill & Savings Tracker, showcasing the budget summary, bill entry, and lists of unpaid/paid bills.
+A modern, multi-language, and multi-currency desktop application built with Python and Tkinter to help you manage your bills, track your budget, and stay on top of your finances. It features a sleek, dark-themed UI with live currency conversion rates.
 
-✨ Key Features
-💰 Budget Management: Set a monthly or periodic budget in any currency and track your spending as you pay your bills.
+---
 
-🌍 Multi-Currency Support: Add bills and set your budget in over 150 different currencies.
+## ✨ Key Features
 
-📈 Real-time Exchange Rates: Integrates with the ExchangeRate-API to automatically fetch the latest conversion rates, ensuring your financial summary is always accurate.
+* **Budget Management**: Set a monthly or periodic budget in any currency and track your spending against it.
+* **Bill Tracking**: Add, edit, and delete bills. Move them from "Unpaid" to "Paid" with a single click.
+* **Multi-Currency Support**: Add bills and set your budget in over 150 different currencies.
+* **Live Exchange Rates**: Integrates with `exchangerate-api.com` to provide real-time currency conversion, ensuring your financial summary is always accurate.
+* **Multi-Language Interface**: Supports multiple languages including English, Georgian, Russian, German, Spanish, and more.
+* **Data Persistence**: Your data (bills, budget, settings) is saved locally in a JSON file, so you never lose your progress.
+* **Visual Financial Summary**: A progress bar and color-coded labels give you an instant overview of your financial health.
+* **Built-in Currency Converter**: A handy tool to quickly convert between currencies.
+* **Sorting & Filtering**: Sort unpaid bills by name, due date, or amount. Filter currency dropdowns by typing.
+* **Customizable Settings**: Configure your API key and change the location of your data file through the settings menu.
 
-🗣️ Multi-Language Interface: The UI is available in 9 languages, including English, Georgian, Russian, German, Spanish, Italian, French, Dutch, and Chinese.
+---
 
-📊 Visual Budget Summary: A dynamic progress bar and color-coded text show you exactly how much of your budget remains after all unpaid bills are accounted for.
+## 📸 Screenshots
 
-📅 Due Date Tracking: Assign a due date to each bill. Overdue bills are highlighted in red so you never miss a payment.
+Here’s a sneak peek of the application's interface.
 
-🗂️ Smart Bill Organization:
+**Main Interface**
+*(Shows the main window with budget section, bill entry form, financial summary, and lists of unpaid/paid bills.)*
 
-Separate lists for Unpaid and Paid bills.
 
-Sort unpaid bills by Name, Due Date, or Amount.
+**Settings Window**
+*(Shows the settings panel where the user can enter their API key and change the data file path.)*
 
-Edit or Delete any bill easily.
 
-🔧 Built-in Tools:
+**Currency Converter**
+*(Shows the standalone currency converter tool.)*
 
-A handy Currency Converter for quick calculations.
 
-A Settings panel to manage your API key and data file location.
+---
 
-💾 Persistent Data: Your bills, budget, and settings are saved locally to a JSON file, so your data is always there when you launch the app.
+## 🛠️ Requirements
 
-🎨 Modern & Animated UI: A sleek, dark-themed interface built with ttk styles, featuring a subtle, animated background for a pleasant user experience.
+To run this application, you need Python 3 and the following libraries:
 
-⚙️ Installation & Setup
-Follow these steps to get the application running on your local machine.
+* **requests**: For making HTTP requests to the currency exchange API.
+* **tkcalendar**: A date-picker widget for Tkinter.
 
-1. Prerequisites
-Python 3.7 or newer.
+These are standard Python libraries and can be easily installed. `Tkinter` is included with most Python installations.
 
-Git (for cloning the repository).
+---
 
-2. Clone the Repository
-Bash
+## 🚀 Installation & Setup
 
-git clone <repository_url>
-cd <repository_directory>
-3. Install Dependencies
-The application requires two external Python libraries. You can install them using pip:
+Follow these steps to get the application up and running on your local machine.
 
-Bash
+1.  **Clone the Repository**
+    ```bash
+    git clone [https://github.com/your-username/bill-tracker.git](https://github.com/your-username/bill-tracker.git)
+    cd bill-tracker
+    ```
+    Alternatively, you can download the source code as a ZIP file and extract it.
 
-pip install requests tkcalendar
-4. Get an ExchangeRate-API Key (Crucial for Currency Features)
-The application needs a free API key to fetch live currency exchange rates.
+2.  **Install Dependencies**
+    Open your terminal or command prompt and run the following command to install the required libraries:
+    ```bash
+    pip install requests tkcalendar
+    ```
 
-Go to www.exchangerate-api.com.
+3.  **Get a Free API Key (Crucial for Currency Rates)**
+    The application uses **ExchangeRate-API** for live currency data. Their free plan is more than sufficient for personal use.
 
-Sign up for the Free Plan.
+    * Go to [www.exchangerate-api.com](https://www.exchangerate-api.com) and sign up for a **Free Account**.
+    * After signing up, go to your dashboard. You will see your API key.
+    * Copy this key.
 
-Find the API key in your user dashboard.
+4.  **Run the Application**
+    Execute the Python script from your terminal:
+    ```bash
+    python your_script_name.py
+    ```
 
-Launch the application and open the Settings window to paste your key.
+5.  **Configure the API Key**
+    * When you first run the app, click the **Settings** button.
+    * Paste the API key you copied into the "ExchangeRate-API Key" field.
+    * Click **Save Key**. The application will immediately fetch the latest exchange rates and be fully functional.
 
-Without an API key, all currency conversions will fail.
+---
 
-5. Run the Application
-Execute the Python script to launch the tracker:
+## 📖 How to Use
 
-Bash
+1.  **Set Your Budget**: Enter your total budget amount, select its currency, and click "Set Budget".
+2.  **Add Bills**: Fill in the bill's name, amount, currency, and due date. Click "Add Bill". It will appear in the "Unpaid Bills" list.
+3.  **Manage Bills**:
+    * Click **Pay** to move a bill to the "Paid Bills" list and deduct its value from your budget.
+    * Click **Edit** to modify a bill's details.
+    * Click **Del** to permanently remove a bill.
+4.  **Monitor Your Finances**: The summary section shows the total amount of unpaid bills and your remaining budget after all bills are paid, all converted to your chosen summary currency.
+5.  **Change Language**: Use the dropdown menu at the top right to switch the application's language instantly.
+6.  **Use Tools**: Access the **Converter**, **Clear Data**, or **Settings** from the action buttons.
 
-python main.py
-(Note: Replace main.py with the actual name of your Python file.)
+---
 
-📖 How to Use
-Set Your Budget:
+## 📁 File Structure
 
-Enter your total budget amount in the top input field.
+The application will automatically create a configuration directory in your user's home folder (`~/.bill_tracker/`) to store its data.
 
-Select your primary currency from the dropdown menu.
+* `config.json`: Stores the API key and the path to your data file.
+* `bill_data.json`: Stores your budget, bills, and other application data. You can change the location of this file via the in-app Settings.
 
-Click "Set Budget". The application will store your budget internally in USD for consistent calculations.
+---
 
-Add a Bill:
+## ✒️ Author & Credits
 
-In the "Add a New Bill" section, enter the bill's name, amount, currency, and due date.
+This application was created with ❤️ by **Grouvya**.
 
-Click "Add Bill". It will appear in the "Unpaid Bills" list.
+* **Donate**: [Revolut](https://revolut.me/grouvya)
+* **Contact**: [guns.lol/grouvya](https://guns.lol/grouvya)
 
-Manage Your Bills:
+---
 
-Pay: Click the red "Pay" button next to an unpaid bill. The bill's amount will be deducted from your budget, and the item will move to the "Paid Bills" list.
+## 📜 License
 
-Edit: Click the "Edit" button to open a new window where you can change the bill's details.
-
-Delete: Click the "Del" button to permanently remove a bill.
-
-Use the Tools:
-
-Summarize: Choose a currency in the "Summarize in:" dropdown to see your budget summary converted to that currency.
-
-Converter: Open the currency converter for quick, ad-hoc calculations.
-
-Settings: Configure your API key and change where the application's data is stored on your computer.
-
-📂 Configuration
-The application automatically creates a hidden directory in your user home folder to store its data:
-
-Location: ~/.bill_tracker/
-
-config.json: Stores your API key and the path to your data file.
-
-bill_data.json: Stores your budget, bills, and app preferences.
-
-You can change the location of bill_data.json from the Settings window.
-
-❤️ Author & Credits
-This application was created with <3 by Grouvya.
-
-Donate: Revolut
-
-Contact: guns.lol/grouvya
-
-📜 License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
