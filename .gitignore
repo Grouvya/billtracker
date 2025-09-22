@@ -1,0 +1,23 @@
+cat <<EOF > .gitignore
+# Flatpak build files
+.flatpak-builder/
+build-dir/
+
+# PyInstaller build files
+build/
+dist/
+*.spec
+
+# AppImage build files
+*.AppDir/
+*.AppImage
+
+# Python cache and virtual environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+EOF
