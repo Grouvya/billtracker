@@ -62,7 +62,7 @@ Follow these steps to get the application up and running on your local machine.
 
 1.  **Clone the Repository**
     ```bash
-    git clone [https://github.com/your-username/bill-tracker.git](https://github.com/your-username/bill-tracker.git)
+    git clone https://github.com/Grouvya/billtracker.git
     cd bill-tracker
     ```
     Alternatively, you can download the source code as a ZIP file and extract it.
