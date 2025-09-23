@@ -1,0 +1,35 @@
+{
+    "app-id": "com.github.grouvya.billtracker",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "46",
+    "sdk": "org.gnome.Sdk",
+    "command": "billtracker.py",
+    "finish-args": [
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--share=ipc",
+        "--filesystem=home"
+    ],
+    "build-extension-sources": [
+        "python3-dependencies.json"
+    ],
+    "modules": [
+        {
+            "name": "billtracker",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -D -t /app/bin src/billtracker.py",
+                "install -D -t /app/lib src/bill_tracker.py",
+                "install -D -t /app/share/applications src/com.github.grouvya.billtracker.desktop",
+                "install -D -t /app/share/icons/hicolor/scalable/apps src/com.github.grouvya.billtracker.svg"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/grouvya/billtracker.git",
+                    "branch": "main"
+                }
+            ]
+        }
+    ]
+}
