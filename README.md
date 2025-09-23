@@ -83,7 +83,7 @@ Follow these steps to get the application up and running on your local machine.
 4.  **Run the Application**
     Execute the Python script from your terminal:
     ```bash
-    python your_script_name.py
+    python app.py
     ```
 
 5.  **Configure the API Key**
