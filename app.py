@@ -171,6 +171,8 @@ class BillEditorWindow(tk.Toplevel):
 
 class BillTrackerApp:
     """A desktop application for tracking bills and savings."""
+    __version__ = "1.0.0" # <<< NEW: Define app version
+
     def __init__(self, root):
         self.root = root
 
@@ -179,7 +181,8 @@ class BillTrackerApp:
         self.language_var = tk.StringVar(value="English")
 
         self.root.minsize(700, 800)
-        self.root.title("Bill & Savings Tracker")
+        # <<< EDITED: Add version to title
+        self.root.title(f"Bill & Savings Tracker v{self.__version__}")
         self.setup_platform_tweaks()
         self.root.configure(bg="#3c3c3c")
 
@@ -457,6 +460,10 @@ class BillTrackerApp:
         self.ui_elements['refresh_rates_button'].pack(side=tk.LEFT, padx=5)
         self.ui_elements['settings_button'] = ttk.Button(actions_frame, style='Converter.TButton', command=self.open_settings_window)
         self.ui_elements['settings_button'].pack(side=tk.LEFT, padx=5)
+        # <<< NEW: Add About button to UI
+        self.ui_elements['about_button'] = ttk.Button(actions_frame, style='Converter.TButton', command=self.open_about_window)
+        self.ui_elements['about_button'].pack(side=tk.LEFT, padx=5)
+
 
         ttk.Separator(main_frame, orient='horizontal').pack(fill='x', pady=10)
 
@@ -514,7 +521,8 @@ class BillTrackerApp:
 
     def change_language(self, event=None):
         t = self.translations[self.language_var.get()]
-        self.root.title(t["window_title"])
+        # <<< EDITED: Update title with version on language change
+        self.root.title(f"{t['window_title']} v{self.__version__}")
         self.ui_elements['budget_label'].config(text=t["set_your_budget"])
         self.ui_elements['set_budget_button'].config(text=t["set_budget"])
         self.ui_elements['add_bill_label'].config(text=t["add_bill"])
@@ -532,6 +540,8 @@ class BillTrackerApp:
         self.ui_elements['credits_label'].config(text=t["credits"])
         self.ui_elements['refresh_rates_button'].config(text=t["refresh_rates_button"])
         self.ui_elements['settings_button'].config(text=t["settings_button"])
+        # <<< NEW: Add translation for About button
+        self.ui_elements['about_button'].config(text=t.get("about_button", "About"))
         self.ui_elements['sort_name_button'].config(text=t["sort_by_name"])
         self.ui_elements['sort_date_button'].config(text=t["sort_by_date"])
         self.ui_elements['sort_amount_button'].config(text=t["sort_by_amount"])
@@ -854,6 +864,46 @@ class BillTrackerApp:
 
         save_button['command'] = save_key_action
 
+    # <<< NEW: Add the About window method
+    def open_about_window(self):
+        """Opens a simple window showing app version and credits."""
+        lang_dict = self.translations[self.language_var.get()]
+        about_window = tk.Toplevel(self.root)
+        about_window.title(lang_dict.get("about_button", "About"))
+        about_window.geometry("350x200")
+        about_window.configure(bg="#3c3c3c")
+        about_window.resizable(False, False)
+        about_window.transient(self.root)
+        about_window.grab_set()
+
+        frame = ttk.Frame(about_window, padding=20, style='Main.TFrame')
+        frame.pack(fill=tk.BOTH, expand=True)
+
+        title_label = ttk.Label(
+            frame, text="Bill & Savings Tracker",
+            style='Header.TLabel', font=('Helvetica', 16, 'bold')
+        )
+        title_label.pack(pady=(0, 5))
+
+        version_label = ttk.Label(
+            frame, text=f"Version {self.__version__}",
+            style='Summary.TLabel', font=('Helvetica', 12)
+        )
+        version_label.pack()
+        
+        credits_label = ttk.Label(
+            frame, text=lang_dict["credits"],
+            style='Credits.TLabel', cursor="hand2"
+        )
+        credits_label.pack(pady=20)
+        credits_label.bind("<Button-1>", self.open_credits_link)
+
+        ok_button = ttk.Button(
+            frame, text="OK",
+            command=about_window.destroy, style='Converter.TButton'
+        )
+        ok_button.pack(pady=(10, 0))
+
     def open_donate_link(self):
         webbrowser.open_new("https://revolut.me/grouvya")
 
@@ -886,7 +936,7 @@ class BillTrackerApp:
                 "clear_data_confirm_msg": "Are you sure you want to delete all bills and reset your budget? This action cannot be undone.",
                 "data_cleared_title": "Data Cleared", "data_cleared_msg": "All data has been successfully cleared.", "error": "Error",
                 "refresh_rates_button": "Refresh Rates", "settings_button": "Settings", "settings_window_title": "Settings",
-                "api_key_label": "ExchangeRate-API Key:", "save_key_button": "Save Key",
+                "api_key_label": "ExchangeRate-API Key:", "save_key_button": "Save Key", "about_button": "About", # <<< NEW
                 "api_instructions": "To get real-time currency rates:\n1. Go to www.exchangerate-api.com\n2. Sign up for the free plan.\n3. Find the API key in your dashboard.\n4. Copy and paste it here.",
                 "api_key_saved_title": "API Key Saved", "api_key_saved_msg": "Your API key has been saved successfully!",
                 "api_key_missing": "API key missing. Go to Settings.", "rates_updated_at": "Live rates updated: {}",
@@ -912,7 +962,7 @@ class BillTrackerApp:
                 "clear_data_confirm_msg": "დარწმუნებული ხართ რომ გსურთ ყველა ანგარიშის წაშლა და ბიუჯეტის განულება? ამ მოქმედების დაბრუნება შეუძლებელია.",
                 "data_cleared_title": "მონაცემები წაშლილია", "data_cleared_msg": "ყველა მონაცემი წარმატებით წაიშალა.", "error": "შეცდომა",
                 "refresh_rates_button": "კურსების განახლება", "settings_button": "პარამეტრები", "settings_window_title": "პარამეტრები",
-                "api_key_label": "ExchangeRate-API გასაღები:", "save_key_button": "გასაღების შენახვა",
+                "api_key_label": "ExchangeRate-API გასაღები:", "save_key_button": "გასაღების შენახვა", "about_button": "შესახებ", # <<< NEW
                 "api_instructions": "რეალური კურსების მისაღებად:\n1. გადადით www.exchangerate-api.com\n2. დარეგისტრირდით უფასო გეგმაზე.\n3. იპოვეთ API გასაღები თქვენს პანელში.\n4. დააკოპირეთ და ჩასვით აქ.",
                 "api_key_saved_title": "API გასაღები შენახულია", "api_key_saved_msg": "თქვენი API გასაღები წარმატებით შეინახა!",
                 "api_key_missing": "API გასაღები აკლია. გადადით პარამეტრებში.", "rates_updated_at": "კურსები განახლდა: {}",
@@ -924,6 +974,7 @@ class BillTrackerApp:
                 "edit_button": "რედაქ.", "delete_button": "წაშლა", "confirm_payment_title": "გადახდის დადასტურება", "confirm_payment_msg": "დარწმუნებული ხართ რომ გსურთ გადაიხადოთ '{}'?",
                 "confirm_delete_title": "წაშლის დადასტურება", "confirm_delete_msg": "დარწმუნებული ხართ რომ გსურთ წაშალოთ '{}'?"
             },
+            # ... (translations for other languages would also need the "about_button" key added)
             "Russian": {
                 "window_title": "Трекер счетов и сбережений", "set_your_budget": "Установить бюджет:", "set_budget": "Установить бюджет",
                 "add_bill": "Добавить новый счет", "bill_name": "Название счета:", "amount": "Сумма:", "currency": "Валюта:", "due_date": "Срок оплаты:",
@@ -938,7 +989,7 @@ class BillTrackerApp:
                 "clear_data_confirm_msg": "Вы уверены, что хотите удалить все счета и сбросить бюджет? Это действие нельзя отменить.",
                 "data_cleared_title": "Данные очищены", "data_cleared_msg": "Все данные были успешно удалены.", "error": "Ошибка",
                 "refresh_rates_button": "Обновить курсы", "settings_button": "Настройки", "settings_window_title": "Настройки",
-                "api_key_label": "API-ключ ExchangeRate-API:", "save_key_button": "Сохранить ключ",
+                "api_key_label": "API-ключ ExchangeRate-API:", "save_key_button": "Сохранить ключ", "about_button": "О программе", # <<< NEW
                 "api_instructions": "Для получения курсов в реальном времени:\n1. Перейдите на www.exchangerate-api.com\n2. Зарегистрируйтесь на бесплатном тарифе.\n3. Найдите API-ключ в вашей панели управления.\n4. Скопируйте и вставьте его сюда.",
                 "api_key_saved_title": "API-ключ сохранен", "api_key_saved_msg": "Ваш API-ключ успешно сохранен!",
                 "api_key_missing": "API-ключ отсутствует. Перейдите в Настройки.", "rates_updated_at": "Курсы обновлены: {}",
@@ -964,7 +1015,7 @@ class BillTrackerApp:
                 "clear_data_confirm_msg": "Sind Sie sicher, dass Sie alle Rechnungen löschen und Ihr Budget zurücksetzen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
                 "data_cleared_title": "Daten gelöscht", "data_cleared_msg": "Alle Daten wurden erfolgreich gelöscht.", "error": "Fehler",
                 "refresh_rates_button": "Kurse aktualisieren", "settings_button": "Einstellungen", "settings_window_title": "Einstellungen",
-                "api_key_label": "ExchangeRate-API-Schlüssel:", "save_key_button": "Schlüssel speichern",
+                "api_key_label": "ExchangeRate-API-Schlüssel:", "save_key_button": "Schlüssel speichern", "about_button": "Über", # <<< NEW
                 "api_instructions": "So erhalten Sie Echtzeit-Währungskurse:\n1. Gehen Sie zu www.exchangerate-api.com\n2. Melden Sie sich für den kostenlosen Plan an.\n3. Finden Sie den API-Schlüssel in Ihrem Dashboard.\n4. Kopieren Sie ihn und fügen Sie ihn hier ein.",
                 "api_key_saved_title": "API-Schlüssel gespeichert", "api_key_saved_msg": "Ihr API-Schlüssel wurde erfolgreich gespeichert!",
                 "api_key_missing": "API-Schlüssel fehlt. Gehen Sie zu den Einstellungen.", "rates_updated_at": "Live-Kurse aktualisiert: {}",
@@ -990,7 +1041,7 @@ class BillTrackerApp:
                 "clear_data_confirm_msg": "¿Está seguro de que desea eliminar todas las facturas y restablecer su presupuesto? Esta acción no se puede deshacer.",
                 "data_cleared_title": "Datos borrados", "data_cleared_msg": "Todos los datos han sido borrados con éxito.", "error": "Error",
                 "refresh_rates_button": "Actualizar tasas", "settings_button": "Ajustes", "settings_window_title": "Ajustes",
-                "api_key_label": "Clave de API de ExchangeRate-API:", "save_key_button": "Guardar clave",
+                "api_key_label": "Clave de API de ExchangeRate-API:", "save_key_button": "Guardar clave", "about_button": "Acerca de", # <<< NEW
                 "api_instructions": "Para obtener tasas de cambio en tiempo real:\n1. Vaya a www.exchangerate-api.com\n2. Regístrese en el plan gratuito.\n3. Encuentre la clave de API en su panel de control.\n4. Cópiela y péguela aquí.",
                 "api_key_saved_title": "Clave de API guardada", "api_key_saved_msg": "¡Su clave de API se ha guardado correctamente!",
                 "api_key_missing": "Falta la clave de API. Vaya a Ajustes.", "rates_updated_at": "Tasas actualizadas: {}",
@@ -1016,7 +1067,7 @@ class BillTrackerApp:
                 "clear_data_confirm_msg": "Sei sicuro di voler eliminare tutte le bollette e reimpostare il budget? Questa azione non può essere annullata.",
                 "data_cleared_title": "Dati cancellati", "data_cleared_msg": "Tutti i dati sono stati cancellati con successo.", "error": "Errore",
                 "refresh_rates_button": "Aggiorna Tassi", "settings_button": "Impostazioni", "settings_window_title": "Impostazioni",
-                "api_key_label": "Chiave API ExchangeRate-API:", "save_key_button": "Salva Chiave",
+                "api_key_label": "Chiave API ExchangeRate-API:", "save_key_button": "Salva Chiave", "about_button": "Informazioni", # <<< NEW
                 "api_instructions": "Per ottenere tassi di cambio in tempo reale:\n1. Vai su www.exchangerate-api.com\n2. Iscriviti al piano gratuito.\n3. Trova la chiave API nella tua dashboard.\n4. Copiala e incollala qui.",
                 "api_key_saved_title": "Chiave API salvata", "api_key_saved_msg": "La tua chiave API è stata salvata con successo!",
                 "api_key_missing": "Chiave API mancante. Vai alle Impostazioni.", "rates_updated_at": "Tassi aggiornati: {}",
@@ -1042,7 +1093,7 @@ class BillTrackerApp:
                 "clear_data_confirm_msg": "Êtes-vous sûr de vouloir supprimer toutes les factures et réinitialiser votre budget ? Cette action est irréversible.",
                 "data_cleared_title": "Données effacées", "data_cleared_msg": "Toutes les données ont été effacées avec succès.", "error": "Erreur",
                 "refresh_rates_button": "Actualiser les taux", "settings_button": "Paramètres", "settings_window_title": "Paramètres",
-                "api_key_label": "Clé API ExchangeRate-API :", "save_key_button": "Enregistrer la clé",
+                "api_key_label": "Clé API ExchangeRate-API :", "save_key_button": "Enregistrer la clé", "about_button": "À propos", # <<< NEW
                 "api_instructions": "Pour obtenir les taux de change en temps réel :\n1. Allez sur www.exchangerate-api.com\n2. Inscrivez-vous au plan gratuit.\n3. Trouvez la clé API dans votre tableau de bord.\n4. Copiez-la et collez-la ici.",
                 "api_key_saved_title": "Clé API enregistrée", "api_key_saved_msg": "Votre clé API a été enregistrée avec succès !",
                 "api_key_missing": "Clé API manquante. Allez dans les Paramètres.", "rates_updated_at": "Taux mis à jour : {}",
@@ -1068,7 +1119,7 @@ class BillTrackerApp:
                 "clear_data_confirm_msg": "Weet u zeker dat u alle rekeningen wilt verwijderen en uw budget wilt resetten? Deze actie kan niet ongedaan worden gemaakt.",
                 "data_cleared_title": "Gegevens gewist", "data_cleared_msg": "Alle gegevens zijn succesvol gewist.", "error": "Fout",
                 "refresh_rates_button": "Tarieven vernieuwen", "settings_button": "Instellingen", "settings_window_title": "Instellingen",
-                "api_key_label": "ExchangeRate-API-sleutel:", "save_key_button": "Sleutel opslaan",
+                "api_key_label": "ExchangeRate-API-sleutel:", "save_key_button": "Sleutel opslaan", "about_button": "Over", # <<< NEW
                 "api_instructions": "Om realtime valutakoersen te krijgen:\n1. Ga naar www.exchangerate-api.com\n2. Meld u aan voor het gratis abonnement.\n3. Zoek de API-sleutel in uw dashboard.\n4. Kopieer en plak deze hier.",
                 "api_key_saved_title": "API-sleutel opgeslagen", "api_key_saved_msg": "Uw API-sleutel is succesvol opgeslagen!",
                 "api_key_missing": "API-sleutel ontbreekt. Ga naar Instellingen.", "rates_updated_at": "Live tarieven bijgewerkt: {}",
@@ -1094,7 +1145,7 @@ class BillTrackerApp:
                 "clear_data_confirm_msg": "您确定要删除所有账单并重置预算吗？此操作无法撤销。",
                 "data_cleared_title": "数据已清除", "data_cleared_msg": "所有数据已成功清除。", "error": "错误",
                 "refresh_rates_button": "刷新汇率", "settings_button": "设置", "settings_window_title": "设置",
-                "api_key_label": "ExchangeRate-API 密钥：", "save_key_button": "保存密钥",
+                "api_key_label": "ExchangeRate-API 密钥：", "save_key_button": "保存密钥", "about_button": "关于", # <<< NEW
                 "api_instructions": "要获取实时货币汇率：\n1. 前往 www.exchangerate-api.com\n2. 注册免费计划。\n3. 在您的仪表板中找到 API 密钥。\n4. 复制并粘贴到此处。",
                 "api_key_saved_title": "API 密钥已保存", "api_key_saved_msg": "您的 API 密钥已成功保存！",
                 "api_key_missing": "缺少 API 密钥。请前往设置。", "rates_updated_at": "实时汇率更新于：{}",
