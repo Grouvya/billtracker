@@ -23,11 +23,11 @@ A modern, multi-language, and multi-currency desktop application built with Pyth
 
 Here’s a sneak peek of the application's interface.
 
-![App Shot1](https://imgur.com/a/40nREAC)
+[![App Shot1](https://i.imgur.com/MFl4Q3V.png))
 
-![App Shot2](https://imgur.com/6Q4Ht7h)
+![App Shot2](https://i.imgur.com/6Q4Ht7h.png)
 
-![App Shot3](https://imgur.com/rFiNg6B)
+![App Shot3](https://i.imgur.com/rFiNg6B.png)
 
 **Main Interface**
 *(Shows the main window with budget section, bill entry form, financial summary, and lists of unpaid/paid bills.)*
