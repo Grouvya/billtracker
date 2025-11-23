@@ -1,7 +1,5 @@
 # Bill & Savings Tracker
 
-![App Icon](https://toppng.com/uploads/preview/free-icons-dollar-bills-transparent-background-11553537979k4k0dooqsl.png)
-
 A modern, multi-language, and multi-currency desktop application built with Python and Tkinter to help you manage your bills, track your budget, and stay on top of your finances. It features a sleek, dark-themed UI with live currency conversion rates.
 
 ---
@@ -25,11 +23,11 @@ A modern, multi-language, and multi-currency desktop application built with Pyth
 
 Here’s a sneak peek of the application's interface.
 
-![App Shot1](https://i.imgur.com/W5gI3yq.png)
+![App Shot1](https://imgur.com/a/40nREAC)
 
+![App Shot2](https://imgur.com/6Q4Ht7h)
 
-![App Shot2](https://i.imgur.com/a4nH6CB.png)
-
+![App Shot3](https://imgur.com/rFiNg6B)
 
 **Main Interface**
 *(Shows the main window with budget section, bill entry form, financial summary, and lists of unpaid/paid bills.)*
